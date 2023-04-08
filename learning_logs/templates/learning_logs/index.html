@@ -1,5 +1,14 @@
 {% extends "learning_logs/base.html" %}
-
 {% block content %}
-  <p>Этот проект помогает вам отслеживать свое обучение по любой теме, которую вы изучаете.</p>
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/learning_logs/index.css" %}" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <p class='index'>/ Этот проект помогает вам отслеживать свое обучение по любой теме, которую вы изучаете. /</p>
+</body>
+</html>
 {% endblock content %}

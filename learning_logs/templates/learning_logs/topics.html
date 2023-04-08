@@ -1,18 +1,27 @@
 {% extends "learning_logs/base.html" %}
-
+{% load static %}
 {% block content %}
-
-    <h1>Темы</h1>
-    <ol>
-        {% for topic in topics %}
-            <li>
-                <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-            </li>
-        {% empty %}
-            <li>Темы еще не добавлены.</li>
-        {% endfor %}
-    </ol>
-
-    <a href="{% url 'learning_logs:new_topic' %}">Добавить новую тему:</a>
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/learning_logs/topics.css" %}" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <h1 class='theme'>Темы:</h1>
+  <hr class="line" size=1px width=1920px color="#666666">
+  <ol class='theme__list'>
+    {% for topic in topics %}
+      <li class='theme__list__item'>
+        <a class='theme__list__link' href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+      </li>
+    {% empty %}
+        <li class='theme__list__item'>Темы еще не добавлены.</li>
+    {% endfor %}
+  </ol>
+  <form action="{% url 'learning_logs:new_topic' %}" method="GET">
+    <button class='button'>Добавить новую тему:</button>
+  </form>
 {% endblock content %}
+</body>
+</html>

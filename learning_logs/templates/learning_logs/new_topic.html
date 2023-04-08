@@ -1,13 +1,20 @@
 {% extends "learning_logs/base.html" %}
-
 {% block content %}
-
-<p>Добавить новую тему:</p>
-
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link href="{% static "css/learning_logs/new_topic.css" %}" rel="stylesheet" type="text/css">
+    </head>
+<body>
+<p class='new__theme'>Добавить новую тему:</p>
+<hr class="line" size=1px width=1920px color="#666666">
 <form action="{% url 'learning_logs:new_topic' %}" method='post'>
     {% csrf_token %}
     {{ form.as_p }}
-    <button name="submit">Добавить тему.</button>
+    <button class="button">Добавить тему.</button>
 </form>
-
+</body>
+</html>
 {% endblock content %}

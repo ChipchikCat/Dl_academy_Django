@@ -1,13 +1,25 @@
-<h1>
-  <a href="{% url 'learning_logs:index' %}">Журнал</a> -
-  <a href="{% url 'learning_logs:topics' %}">Темы</a> -
-  {% if user.is_authenticated %}
-    Привет, {{ user.username }}.
-    <a href="{% url 'users:logout' %}">Выйти.</a>
-  {% else %}
-    <a href="{% url 'users:register' %}">Зарегистрироваться.</a> -
-    <a href="{% url 'users:login' %}">Войти.</a>
-  {% endif %}
-</h1>
-
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/learning_logs/base.css" %}" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <header class='header'>
+    <ul class='header__list'>
+      <img class="header__logo" src="static/media/LL.png" alt="logo">
+      <li class='header__list__item'><a class='header__list__link' href="{% url 'learning_logs:index' %}">/ Журнал /</a></li>
+      <li class='header__list__item'><a class='header__list__link' href="{% url 'learning_logs:topics' %}">/ Темы /</a></li>
+      {% if user.is_authenticated %}
+        <li><p class='auth-user'> / Привет, {{ user.username }} /</p><li>
+        <li class='header__list__item'><a class='header__list__link' href="{% url 'users:logout' %}">/ Выйти /</a></li>
+      {% else %}
+        <li class='header__list__item'><a class='header__list__link' href="{% url 'users:register' %}">/ Зарегистрироваться /</a></li>
+        <li class='header__list__item'><a class='header__list__link' href="{% url 'users:login' %}">/ Войти /</a></li>
+      {% endif %}
+    </ul>
+  </header>
+</body>
+</html>
 {% block content %}{% endblock content %}

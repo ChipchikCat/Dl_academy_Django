@@ -1,25 +1,38 @@
 {% extends 'learning_logs/base.html' %}
-
 {% block content %}
-
-    <p>Topic: {{ topic }}</p>
-
-    <p>Записи:</p>
-    <p>
-        <a href="{% url 'learning_logs:new_entry' topic.id %}">Добавьте новую запись темы.</a>
-    </p>
-    <ul>
-    {% for entry in entries %}
-        <li>
-            <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-            <p>{{ entry.text|linebreaks }}</p>
-            <p>
-                <a href="{% url 'learning_logs:edit_entry' entry.id %}">Изменить запись.</a>
-            </p>
-        </li>
-    {% empty %}
-        <li>В этой теме пока нет записей.</li>
-    {% endfor %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link href="{% static "css/learning_logs/topic.css" %}" rel="stylesheet" type="text/css">
+    </head>
+<body>
+    <ul class="list">
+        <li class="list__item"><p class="list__item__paragraph">Тема: {{ topic }}</p></li>
+        <hr class="line" size=2px width=1920px color="#666666">
+        <li class="list__item"><p class="list__item__paragraph">Записи:</p></li>
+        <p class="list__item__paragraph">
+            <form action="{% url 'learning_logs:new_entry' topic.id %}" method="GET">
+                <button class='button'>Добавьте новую запись темы:</button>
+            </form>
+        </p>
+        <ul class="list">
+            {% for entry in entries %}
+                <li>
+                    <li class="list__item"><p class="list__item__paragraph">{{ entry.date_added|date:'M d, Y H:i' }}</p></li>
+                    <li class="list__item"><p class="list__item__paragraph">{{ entry.text|linebreaks }}</p></li>
+                    <p class="list__item__paragraph">
+                        <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="GET">
+                            <button class='button'>Изменить запись:</button>
+                        </form>
+                    </p>
+                </li>
+            {% empty %}
+                <p class="list__item__paragraph">В этой теме пока нет записей.</p>
+            {% endfor %}
+        </ul>
     </ul>
-
+</body>
+</html>
 {% endblock content %}

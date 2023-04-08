@@ -1,0 +1,11 @@
+.index {
+    width: 1920px;
+    height: 100px;
+    background: #f1eecb;
+    display: flex;
+    text-align: center;
+    color: #535353;
+    padding-top: 20px;
+    padding-left: 35px;
+    font-size: 24px;
+}

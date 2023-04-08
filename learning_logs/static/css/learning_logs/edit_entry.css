@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.list {
+    list-style-type: none;
+}
+
+.list__link {
+    font-size: 20px;
+}
+
+.list__link:visited {
+    font-size: 20px;
+    color: #000000;
+}
+
+.list__item__paragraph {
+    font-size: 20px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.list__item__form {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.button {
+    background: #747373;
+	padding: 9px 22px;
+    color: #e7ffe2;
+    border: none;
+}
+
+.button:hover {
+	background: #C29974;
+	cursor: pointer;
+    color: black;
+}

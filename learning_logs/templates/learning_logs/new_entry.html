@@ -1,14 +1,23 @@
 {% extends "learning_logs/base.html" %}
-
 {% block content %}
-
-    <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-
-    <p>Добавить новую запись:</p>
-    <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name='submit'>Добавить запись.</button>
-    </form>
-
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/learning_logs/new_entry.css" %}" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <ul class="list">
+    <li class="list__item"><p class="list__item_paragraph"><a class="list__link" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p></li>
+    <hr class="line" size=2px width=1920px color="#666666">
+    <li class="list__item"><p class="list__item_paragraph">Добавить новую запись:</p></li>
+    <li class="list__item"><form class="list__item__form" action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <li class="list__item"><button class="button">Добавить запись.</button></li>
+    </form></li>
+  </ul>
+</body>
+</html>
 {% endblock content %}

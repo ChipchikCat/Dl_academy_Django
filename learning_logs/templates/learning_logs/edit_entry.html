@@ -1,15 +1,23 @@
 {% extends "learning_logs/base.html" %}
-
 {% block content %}
-
-    <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-
-    <p>Изменить запись:</p>
-
-    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Сохранить изменения.</button>
-    </form>
-
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/learning_logs/edit_entry.css" %}" rel="stylesheet" type="text/css">
+  </head>
+<body>
+  <ul class="list">
+    <li class="list__item"><p class="list__item_paragraph"><a class="list__link" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p></li>
+    <hr class="line" size=2px width=1920px color="#666666">
+    <li class="list__item"><p class="list__item__paragraph">Изменить запись:</p></li>
+    <li class="list__item"><form class="list__item__form" action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <li class="list__item"><button class="button">Сохранить изменения.</button></li>
+      </form></li>
+  </ul>
+</body>
+</html>
 {% endblock content %}

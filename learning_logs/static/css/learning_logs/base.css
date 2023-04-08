@@ -1,0 +1,35 @@
+.header {
+    width: 1920px;
+    height: 100px;
+    background: #EEE4DB;
+    display: flex;
+    text-align: center;
+}
+
+.header__list {
+    list-style-type: none;
+    display: flex;
+    text-align: center;
+    gap: 20px;
+}
+
+.header__list__item {
+    gap: 20px;
+}
+
+.header__list__link {
+    text-decoration: none;
+    font-size: 32px;
+    gap: 20px;
+    color: antiquewhite;
+}
+
+.header__list__link:visited {
+    color: #9FA4AF;
+}
+
+.auth-user {
+    font-size: 32px;
+    margin-top: -1px;
+    color: #e71717;
+}
