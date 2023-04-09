@@ -1,3 +1,31 @@
 .list {
     list-style-type: none;
 }
+
+.list__item__paragraph-1 {
+    font-size: 22px;
+    font-family: cursive;
+    background-color: #aef8a5;
+    width: 1920px;
+    height: 60px;
+    padding-top: 17px;
+    padding-left: 10px;
+}
+
+.list__item__paragraph {
+    font-size: 22px;
+    font-family: cursive;
+}
+
+.button {
+    background: #747373;
+	padding: 9px 22px;
+    color: #e7ffe2;
+    border: none;
+}
+
+.button:hover {
+	background: #C29974;
+	cursor: pointer;
+    color: black;
+}

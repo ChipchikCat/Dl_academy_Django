@@ -9,7 +9,7 @@
     </head>
 <body>
     <ul class="list">
-        <li class="list__item"><p class="list__item__paragraph">Тема: {{ topic }}</p></li>
+        <li class="list__item"><p class="list__item__paragraph-1">Тема: {{ topic }}</p></li>
         <hr class="line" size=2px width=1920px color="#666666">
         <li class="list__item"><p class="list__item__paragraph">Записи:</p></li>
         <p class="list__item__paragraph">
@@ -21,6 +21,7 @@
             {% for entry in entries %}
                 <li>
                     <li class="list__item"><p class="list__item__paragraph">{{ entry.date_added|date:'M d, Y H:i' }}</p></li>
+                    <hr class="line" size=2px width=1920px color="#666666">
                     <li class="list__item"><p class="list__item__paragraph">{{ entry.text|linebreaks }}</p></li>
                     <p class="list__item__paragraph">
                         <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="GET">
