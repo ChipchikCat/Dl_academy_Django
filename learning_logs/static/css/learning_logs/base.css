@@ -22,11 +22,18 @@
     font-size: 32px;
     gap: 20px;
     color: antiquewhite;
+}
 
+.header__list__link:hover {
+    text-decoration: underline;
 }
 
 .header__list__link:visited {
-    color: #9FA4AF;
+    color: #000000;
+}
+
+.header__list__link:visited:hover {
+    color: #ff123a;
 }
 
 .auth-user {

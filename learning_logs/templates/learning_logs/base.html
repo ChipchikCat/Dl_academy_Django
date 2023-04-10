@@ -8,7 +8,7 @@
 <body>
   <header class='header'>
     <ul class='header__list'>
-      <img class="header__logo" src="static/media/LL.png" alt="logo">
+      <img class="header__logo" src="/static/LL.png" alt="logo">
       <li class='header__list__item'><a class='header__list__link' href="{% url 'learning_logs:index' %}">/ Журнал /</a></li>
       <li class='header__list__item'><a class='header__list__link' href="{% url 'learning_logs:topics' %}">/ Темы /</a></li>
       {% if user.is_authenticated %}
