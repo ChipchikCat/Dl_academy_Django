@@ -16,8 +16,17 @@
       {% csrf_token %}
       {{ form.as_p }}
       <li class="list__item"><button class="button">Сохранить изменения.</button></li>
-      </form></li>
+    </li>
   </ul>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    {{ form.as_p }}
+  <button type="submit">Загрузить</button>
+</form>
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
 </body>
 </html>
 {% endblock content %}

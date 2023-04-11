@@ -37,11 +37,5 @@ class Entry(models.Model):
     def __str__(self):
         """Возвращает строковое представление модели."""
         return f"{self.text[:50]}"
-    
-class Image(models.Model):
-    title = models.CharField(max_length=255)
-    content = models.TextField()
-    img = models.ImageField(upload_to='media')
-
 
 
