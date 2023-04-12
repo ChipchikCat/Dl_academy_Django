@@ -9,6 +9,7 @@ def image_upload_view(request):
         if form.is_valid():
             form.save()
             img_obj = form.instance
-            return render(request, 'index.html', {'form': form, 'img_obj': img_obj})
+            return render(request, 'edit_entry.html', {'form': form, 'img_obj': img_obj})
     else:
         form = ImageForm()
+    return render(request, 'edit_entry.html', {'form': form})
