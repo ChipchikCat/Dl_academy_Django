@@ -20,6 +20,10 @@
     color: rgb(0, 0, 0);
 }
 
+.theme__list__link:hover {
+    color: #adadad;
+}
+
 .button {
     background: #747373;
 	padding: 9px 22px;

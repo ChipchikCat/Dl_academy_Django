@@ -1,7 +1,8 @@
 from django.contrib import admin
+from.models import Topic, Entry
+from images.models import Image
 
 # Register your models here.
-from.models import Topic, Entry
 
 class PostAdmin(admin.ModelAdmin):
     list_display=('text', 'slug', 'owner', 'date_added', 'status')
@@ -14,3 +15,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Topic, PostAdmin)
 admin.site.register(Entry)
+admin.site.register(Image)

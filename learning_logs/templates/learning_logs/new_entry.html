@@ -7,17 +7,29 @@
     <title>{% block title %}{% endblock title %}</title>
     <link href="{% static "css/learning_logs/new_entry.css" %}" rel="stylesheet" type="text/css">
   </head>
-<body>
-  <ul class="list">
-    <li class="list__item"><p class="list__item_paragraph"><a class="list__link" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p></li>
-    <hr class="line" size=2px width=1920px color="#666666">
-    <li class="list__item"><p class="list__item_paragraph">Добавить новую запись:</p></li>
-    <li class="list__item"><form class="list__item__form" action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
-      {% csrf_token %}
-      {{ form.as_p }}
-      <li class="list__item"><button class="button">Добавить запись.</button></li>
-    </form></li>
-  </ul>
-</body>
+  <body>
+    <ul class="list">
+      <li class="list__item"><p class="list__item_paragraph"><a class="list__link" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p></li>
+      <hr class="line" size=2px width=1920px color="#666666">
+      <li class="list__item"><p class="list__item_paragraph">Добавить новую запись:</p></li>
+        <li class="list__item">
+            <form class="list__item__form" action="{% url 'learning_logs:new_entry' topic.id %}" method='post'
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ images_forms.management_form }}
+                {% for image_form in images_forms %}
+                    {{ image_form.as_p }}
+                    {% if images_forms.can_delete %}
+                        <div>{{ image_form.DELETE }}</div>
+                    {% endif %}
+                {% endfor %}
+                <div class="list__item">
+                    <button class="button" type="submit">Добавить запись.</button>
+                </div>
+            </form>
+        </li>
+    </ul>
+  </body>
 </html>
 {% endblock content %}

@@ -21,7 +21,9 @@
     text-decoration: none;
     font-size: 32px;
     gap: 20px;
-    color: antiquewhite;
+    color: rgb(20, 142, 199);
+    border-right:13px;
+    
 }
 
 .header__list__link:hover {
@@ -40,4 +42,7 @@
     font-size: 32px;
     margin-top: -1px;
     color: #ff123a;
+}
+.border {
+    border:5px #00B344;
 }

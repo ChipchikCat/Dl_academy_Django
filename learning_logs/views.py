@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from.models import Topic, Entry
 from.forms import TopicForm, EntryForm
+from images.forms import ImageFormSet
+from images.models import Image
+
 
 # Create your views here.
 
@@ -57,18 +60,26 @@ def new_entry(request, topic_id):
     if request.method !='POST':
         # Данные не отправлялись; создается пустая форма.
         form = EntryForm()
+        images_forms = ImageFormSet()
     else:
         # Отправлены данные POST; обработать данные.
         form = EntryForm(data=request.POST)
-        if form.is_valid():
+        images_forms = ImageFormSet(request.POST, request.FILES)
+        if form.is_valid() and images_forms.is_valid():
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
+
+            images = images_forms.save(commit=False)
+            for image in images:
+                image.entry = new_entry
+            Image.objects.bulk_create(images)
             return redirect('learning_logs:topic', topic_id=topic_id)
 
     # Вывести пустую или недействительную форму.
-    context = {'topic': topic, 'form': form}
+    context = {'topic': topic, 'form': form, 'images_forms': images_forms}
     return render(request, 'learning_logs/new_entry.html', context)
+
 
 @login_required
 def edit_entry(request, entry_id):
@@ -81,12 +92,27 @@ def edit_entry(request, entry_id):
     if request.method != 'POST':
         # Исходный запрос; форма заполняется данными текущей записи.
         form = EntryForm(instance=entry)
+        images_forms = ImageFormSet(queryset=entry.images.all())
     else:
         # Отправка данных POST; обработать данные.
         form = EntryForm(instance=entry, data=request.POST)
-        if form.is_valid():
-            form.save()
+        images_forms = ImageFormSet(
+            queryset=entry.images.all(),
+            data=request.POST,
+            files=request.FILES
+        )
+        if form.is_valid() and images_forms.is_valid():
+            entry = form.save()
+            images = images_forms.save(commit=False)
+            new_images = []
+            for image in images:
+                if not image.pk:
+                    image.entry = entry
+                    new_images.append(image)
+                else:
+                    image.save()
+            Image.objects.bulk_create(new_images)
             return redirect('learning_logs:topic', topic_id=topic.id)
 
-    context = {'entry': entry, 'topic': topic, 'form': form}
+    context = {'entry': entry, 'topic': topic, 'form': form, 'images_forms': images_forms}
     return render(request, 'learning_logs/edit_entry.html', context)
