@@ -24,6 +24,12 @@
     color: #adadad;
 }
 
+.theme__list__item {
+    font-size: 22px;
+    font-family: cursive;
+    color: #747373;
+}
+
 .button {
     background: #747373;
 	padding: 9px 22px;

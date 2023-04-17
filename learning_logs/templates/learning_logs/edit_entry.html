@@ -17,13 +17,13 @@
           enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-                      {{ images_forms.management_form }}
-                {% for image_form in images_forms %}
-                    {{ image_form.as_p }}
-                    {% if images_forms.can_delete %}
-                        <div>{{ image_form.DELETE }}</div>
-                    {% endif %}
-                {% endfor %}
+          {{ images_forms.management_form }}
+            {% for image_form in images_forms %}
+              {{ image_form.as_p }}
+              {% if images_forms.can_delete %}
+                <div>{{ image_form.DELETE }}</div>
+              {% endif %}
+            {% endfor %}
         <div class="list__item"><button class="button">Сохранить изменения.</button></div>
           </form>
       </li>

@@ -10,7 +10,7 @@ def restrict_amount(value):
 
 class Image(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='media')
+    image = models.ImageField()
     entry = models.ForeignKey(
         Entry,
         on_delete=models.CASCADE,

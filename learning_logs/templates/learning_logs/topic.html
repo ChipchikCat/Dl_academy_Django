@@ -19,9 +19,14 @@
         </p>
         <ul class="list">
             {% for entry in entries %}
-                <li>
+                <li class="list__item">
                     <li class="list__item"><p class="list__item__paragraph">{{ entry.date_added|date:'M d, Y H:i' }}</p></li>
                     <hr class="line" size=2px width=1920px color="#666666">
+                    <ul class="list">
+                        {% for image_item in entry.images.all %}
+                            <li class="list__item"><img src="{{ image_item.image.url }}" alt="{{ entry.text}}"></li>
+                        {% endfor %}
+                    </ul>
                     <li class="list__item"><p class="list__item__paragraph">{{ entry.text|linebreaks }}</p></li>
                     <p class="list__item__paragraph">
                         <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="GET">

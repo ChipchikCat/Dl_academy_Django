@@ -39,4 +39,3 @@ class Entry(models.Model):
         """Возвращает строковое представление модели."""
         return f"{self.text[:50]}"
 
-
