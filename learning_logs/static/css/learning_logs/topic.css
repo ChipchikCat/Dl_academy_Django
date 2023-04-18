@@ -2,6 +2,10 @@
     list-style-type: none;
 }
 
+.list__item {
+    font-size: 32px;
+}
+
 .list__item__paragraph-1 {
     font-size: 22px;
     font-family: cursive;
